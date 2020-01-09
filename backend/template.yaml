@@ -1,0 +1,71 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Backend Template
+
+Parameters:
+  WebHostingBucketName:
+    Type: String
+
+Resources:
+  WebHostingBucket:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Retain
+    Properties:
+      BucketName: !Ref WebHostingBucketName
+      AccessControl: Private
+      WebsiteConfiguration:
+        IndexDocument: index.html
+        ErrorDocument: error.html
+
+  BucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref WebHostingBucket
+      PolicyDocument:
+        Statement:
+          Action: 's3:GetObject'
+          Effect: 'Allow'
+          Principal: '*'
+          Resource: !Sub 'arn:aws:s3:::${WebHostingBucketName}/*'
+
+  CloudFrontDistribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Origins:
+          - DomainName: !Sub '${WebHostingBucketName}.s3.amazonaws.com'
+            Id: S3Origin
+            S3OriginConfig:
+              OriginAccessIdentity: ''
+        Enabled: 'true'
+        HttpVersion: http2
+        DefaultRootObject: index.html
+        Comment: !Sub '${AWS::StackName} distribution'
+        DefaultCacheBehavior:
+          AllowedMethods:
+            - GET
+            - HEAD
+          CachedMethods:
+            - GET
+            - HEAD
+          Compress: 'true'
+          DefaultTTL: 3600
+          MaxTTL: 86400
+          MinTTL: 60
+          TargetOriginId: S3Origin
+          ForwardedValues:
+            QueryString: 'false'
+            Cookies:
+              Forward: none
+          ViewerProtocolPolicy: redirect-to-https
+        Restrictions:
+          GeoRestriction:
+            RestrictionType: whitelist
+            Locations:
+              - JP
+        PriceClass: PriceClass_200
+
+Outputs:
+  S3HostingURL:
+    Value: !GetAtt WebHostingBucket.WebsiteURL
+  CloudFrontHostingURL:
+    Value: !Join ['', ['https://', !GetAtt CloudFrontDistribution.DomainName]]
