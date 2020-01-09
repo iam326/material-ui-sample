@@ -1,0 +1,32 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Backend Template
+
+Parameters:
+  WebHostingBucketName:
+    Type: String
+
+Resources:
+  WebHostingBucket:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Retain
+    Properties:
+      BucketName: !Ref WebHostingBucketName
+      AccessControl: Private
+      WebsiteConfiguration:
+        IndexDocument: index.html
+        ErrorDocument: error.html
+
+  BucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref WebHostingBucket
+      PolicyDocument:
+        Statement:
+          Action: 's3:GetObject'
+          Effect: 'Allow'
+          Principal: '*'
+          Resource: !Sub 'arn:aws:s3:::${WebHostingBucketName}/*'
+
+Outputs:
+  S3HostingURL:
+    Value: !GetAtt WebHostingBucket.WebsiteURL
