@@ -2,6 +2,7 @@ import React from 'react';
 import 'typeface-roboto';
 import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
+import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import IconButton from '@material-ui/core/IconButton';
@@ -10,6 +11,7 @@ import StarIcon from '@material-ui/icons/Star';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 import ThumbUpIcon from '@material-ui/icons/ThumbUpOutlined';
 import ThumbDownIcon from '@material-ui/icons/ThumbDownOutlined';
+import logo from './logo.svg';
 
 interface AppState {
   goodCount: number,
@@ -51,7 +53,12 @@ class App extends React.Component<{}, AppState> {
   render() {
     return (
       <div>
-        <Card style={{maxWidth: 275}}>
+        <Card style={{paddingTop: '10px', maxWidth: 275}}>
+          <CardMedia
+            style={{ height: 0, paddingTop: '56%'}}
+            image={logo}
+            title="logo"
+          />
           <CardContent>
             <Typography variant="h5" component="h2">
               Title
