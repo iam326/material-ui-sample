@@ -37,9 +37,9 @@ class Item extends React.Component<ItemProps, ItemState> {
     this.bad = this.bad.bind(this);
   }
 
-  favorite(bool: boolean): void {
+  favorite(e: React.MouseEvent): void {
     this.setState({
-      isFavorite: bool
+      isFavorite: !this.state.isFavorite
     });
   }
 
@@ -83,8 +83,8 @@ class Item extends React.Component<ItemProps, ItemState> {
           <IconButton aria-label="favorite">
             {
               this.state.isFavorite 
-                ? <StarIcon onClick={(_) => this.favorite(false)} />
-                : <StarBorderIcon onClick={(_) => this.favorite(true)} />
+                ? <StarIcon onClick={this.favorite} />
+                : <StarBorderIcon onClick={this.favorite} />
             }
           </IconButton>
           <IconButton aria-label="share">
