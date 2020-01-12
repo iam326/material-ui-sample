@@ -13,48 +13,20 @@ import ThumbUpIcon from '@material-ui/icons/ThumbUpOutlined';
 import ThumbDownIcon from '@material-ui/icons/ThumbDownOutlined';
 
 interface ItemProps {
+  index: number;
   title: string;
   body: string;
   image: string;
+  goodCount: number;
+  badCount: number;
+  isFavorite: boolean;
+  onClick: (eventType: string, i: number) => void;
 }
 
 interface ItemState {
-  goodCount: number,
-  badCount: number,
-  isFavorite: boolean;
 }
 
 class Item extends React.Component<ItemProps, ItemState> {
-  constructor(props: ItemProps) {
-    super(props);
-    this.state = {
-      goodCount: 0,
-      badCount: 0,
-      isFavorite: false
-    }
-    this.favorite = this.favorite.bind(this);
-    this.good = this.good.bind(this);
-    this.bad = this.bad.bind(this);
-  }
-
-  favorite(e: React.MouseEvent): void {
-    this.setState({
-      isFavorite: !this.state.isFavorite
-    });
-  }
-
-  good(e: React.MouseEvent): void {
-    this.setState({
-      goodCount: this.state.goodCount + 1
-    });
-  }
-
-  bad(e: React.MouseEvent): void {
-    this.setState({
-      badCount: this.state.badCount + 1
-    });
-  }
-
   render() {
     return (
       <Card style={{paddingTop: '10px', marginBottom: '10px', maxWidth: 275}}>
@@ -73,18 +45,26 @@ class Item extends React.Component<ItemProps, ItemState> {
         </CardContent>
         <CardActions disableSpacing>
           <IconButton aria-label="thumb-up">
-            <ThumbUpIcon onClick={this.good} />
+            <ThumbUpIcon
+              onClick={(_: any) => this.props.onClick('good', this.props.index)}
+            />
           </IconButton>
-          <span>{this.state.goodCount}</span>
+          <span>{this.props.goodCount}</span>
           <IconButton aria-label="thumb-down">
-            <ThumbDownIcon onClick={this.bad} />
+            <ThumbDownIcon
+              onClick={(_: any) => this.props.onClick('bad', this.props.index)}
+            />
           </IconButton>
-          <span>{this.state.badCount}</span>
+          <span>{this.props.badCount}</span>
           <IconButton aria-label="favorite">
             {
-              this.state.isFavorite 
-                ? <StarIcon onClick={this.favorite} />
-                : <StarBorderIcon onClick={this.favorite} />
+              this.props.isFavorite 
+                ? <StarIcon
+                    onClick={(_: any) => this.props.onClick('favorite', this.props.index)}
+                  />
+                : <StarBorderIcon
+                    onClick={(_: any) => this.props.onClick('favorite', this.props.index)}
+                  />
             }
           </IconButton>
           <IconButton aria-label="share">
