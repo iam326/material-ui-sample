@@ -1,5 +1,8 @@
 import React from 'react';
 import 'typeface-roboto';
+import Grid from '@material-ui/core/Grid';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
 import Item from './Item';
 import logo from './logo.svg';
 
@@ -83,23 +86,39 @@ class App extends React.Component<{}, State> {
 
   render() {
     return (
-      <div>
-        {
-          this.items.map((item, index) => (
-            <Item 
-              key={index}
-              index={index}
-              title={item.title}
-              body={item.body}
-              image={item.image}
-              goodCount={item.goodCount}
-              badCount={item.badCount}
-              isFavorite={item.isFavorite}
-              onClick={this.handleClick}
-            />
-          )) 
-        }
-      </div>
+      <Grid
+        container
+        alignItems="center"
+        justify="center"
+      >
+        <AppBar
+          position="fixed"
+          style={{
+            alignItems: 'center',
+            fontSize: '24px'
+          }}>
+          <Toolbar>
+            Title
+          </Toolbar>
+        </AppBar>
+        <div style={{marginTop: '70px'}}>
+          {
+            this.items.map((item, index) => (
+              <Item 
+                key={index}
+                index={index}
+                title={item.title}
+                body={item.body}
+                image={item.image}
+                goodCount={item.goodCount}
+                badCount={item.badCount}
+                isFavorite={item.isFavorite}
+                onClick={this.handleClick}
+              />
+            )) 
+          }
+        </div>
+      </Grid>
     )
   }
 }
