@@ -4,7 +4,8 @@ import Grid from '@material-ui/core/Grid';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Item from './Item';
-import logo from './logo.svg';
+
+const image = 'http://img.youtube.com/vi/IQnciTSrowU/mqdefault.jpg';
 
 interface State {
   items: any
@@ -16,7 +17,7 @@ class App extends React.Component<{}, State> {
     { 
       title: 'Sample Title 01',
       body: 'Sample Body 01',
-      image: logo,
+      image,
       goodCount: 100,
       badCount: 200,
       isFavorite: true
@@ -24,7 +25,7 @@ class App extends React.Component<{}, State> {
     {
       title: 'Sample Title 02',
       body: 'Sample Body 02',
-      image: logo,
+      image,
       goodCount: 300,
       badCount: 400,
       isFavorite: false
@@ -32,7 +33,7 @@ class App extends React.Component<{}, State> {
     {
       title: 'Sample Title 03',
       body: 'Sample Body 03',
-      image: logo,
+      image,
       goodCount: 500,
       badCount: 600,
       isFavorite: true

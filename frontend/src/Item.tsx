@@ -29,7 +29,7 @@ interface ItemState {
 class Item extends React.Component<ItemProps, ItemState> {
   render() {
     return (
-      <Card style={{paddingTop: '10px', marginBottom: '10px', maxWidth: 275}}>
+      <Card style={{paddingTop: '10px', marginBottom: '10px', minWidth: 320, maxWidth: 640}}>
         <CardMedia
           style={{ height: 0, paddingTop: '56%'}}
           image={this.props.image}
