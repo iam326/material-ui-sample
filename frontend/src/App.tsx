@@ -3,12 +3,18 @@ import 'typeface-roboto';
 import Grid from '@material-ui/core/Grid';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+import BottomNavigation from '@material-ui/core/BottomNavigation';
+import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
+import WhatshotIcon from '@material-ui/icons/Whatshot';
+import PlaylistPlayIcon from '@material-ui/icons/PlaylistPlay';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import Item from './Item';
 
 const image = 'http://img.youtube.com/vi/IQnciTSrowU/mqdefault.jpg';
 
 interface State {
-  items: any
+  items: any;
+  value: string;
 }
 
 class App extends React.Component<{}, State> {
@@ -47,7 +53,8 @@ class App extends React.Component<{}, State> {
     this.bad = this.bad.bind(this);
     this.favorite = this.favorite.bind(this);
     this.state = {
-      items: this.items
+      items: this.items,
+      value: 'ranking'
     };
   }
 
@@ -119,6 +126,17 @@ class App extends React.Component<{}, State> {
             )) 
           }
         </div>
+        <AppBar position="fixed" color="primary" style={{top: "auto", bottom: 0}}>
+          <BottomNavigation
+            value={this.state.value}
+            showLabels
+            onChange={(ev, value) => this.setState({value})}
+          >
+            <BottomNavigationAction label="Ranking" value="ranking" icon={<WhatshotIcon />} />
+            <BottomNavigationAction label="Playlist" value="playlist" icon={<PlaylistPlayIcon />} />
+            <BottomNavigationAction label="Channel" value="channel" icon={<AccountCircleIcon />} />
+          </BottomNavigation>
+        </AppBar>
       </Grid>
     )
   }
