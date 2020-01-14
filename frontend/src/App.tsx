@@ -2,12 +2,13 @@ import React from 'react';
 import 'typeface-roboto';
 import Grid from '@material-ui/core/Grid';
 import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import WhatshotIcon from '@material-ui/icons/Whatshot';
 import PlaylistPlayIcon from '@material-ui/icons/PlaylistPlay';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+
+import Header from './Header';
 import Item from './Item';
 
 const image = 'http://img.youtube.com/vi/IQnciTSrowU/mqdefault.jpg';
@@ -99,16 +100,7 @@ class App extends React.Component<{}, State> {
         alignItems="center"
         justify="center"
       >
-        <AppBar
-          position="fixed"
-          style={{
-            alignItems: 'center',
-            fontSize: '24px'
-          }}>
-          <Toolbar>
-            Title
-          </Toolbar>
-        </AppBar>
+        <Header>Card List Sample</Header>
         <div style={{marginTop: '70px'}}>
           {
             this.items.map((item, index) => (
