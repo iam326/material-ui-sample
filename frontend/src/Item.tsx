@@ -62,21 +62,23 @@ function Item(props: Props) {
         title="logo"
       />
       <CardActions className={classes.actions}>
-        <div className={classes.item}>
+        <div
+          className={classes.item}
+          onClick={(_: any) => props.onClick('good', props.index)}
+        >
           <IconButton aria-label="thumb-up">
-            <ThumbUpIcon
-              onClick={(_: any) => props.onClick('good', props.index)}
-            />
+            <ThumbUpIcon/>
           </IconButton>
           <div className={classes.count}>
             {props.goodCount}
           </div>
         </div>
-        <div className={classes.item}>
+        <div 
+          className={classes.item}
+          onClick={(_: any) => props.onClick('bad', props.index)}
+        >
           <IconButton aria-label="thumb-down">
-            <ThumbDownIcon
-              onClick={(_: any) => props.onClick('bad', props.index)}
-            />
+            <ThumbDownIcon/>
           </IconButton>
           <div className={classes.count}>
             {props.badCount}
