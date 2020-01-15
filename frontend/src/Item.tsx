@@ -32,6 +32,17 @@ const useStyles = makeStyles({
   media: {
     height: 0,
     paddingTop: '56%'
+  },
+  actions: {
+    display: 'flex',
+    justifyContent: 'center'
+  },
+  item: {
+    width: '28%'
+  },
+  count: {
+    display: 'inline-block',
+    marginLeft: '6px'
   }
 });
 
@@ -50,33 +61,45 @@ function Item(props: Props) {
         image={props.image}
         title="logo"
       />
-      <CardActions disableSpacing>
-        <IconButton aria-label="thumb-up">
-          <ThumbUpIcon
-            onClick={(_: any) => props.onClick('good', props.index)}
-          />
-        </IconButton>
-        <span>{props.goodCount}</span>
-        <IconButton aria-label="thumb-down">
-          <ThumbDownIcon
-            onClick={(_: any) => props.onClick('bad', props.index)}
-          />
-        </IconButton>
-        <span>{props.badCount}</span>
-        <IconButton aria-label="favorite">
-          {
-            props.isFavorite 
-              ? <StarIcon
-                  onClick={(_: any) => props.onClick('favorite', props.index)}
-                />
-              : <StarBorderIcon
-                  onClick={(_: any) => props.onClick('favorite', props.index)}
-                />
-          }
-        </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton>
+      <CardActions className={classes.actions}>
+        <div className={classes.item}>
+          <IconButton aria-label="thumb-up">
+            <ThumbUpIcon
+              onClick={(_: any) => props.onClick('good', props.index)}
+            />
+          </IconButton>
+          <div className={classes.count}>
+            {props.goodCount}
+          </div>
+        </div>
+        <div className={classes.item}>
+          <IconButton aria-label="thumb-down">
+            <ThumbDownIcon
+              onClick={(_: any) => props.onClick('bad', props.index)}
+            />
+          </IconButton>
+          <div className={classes.count}>
+            {props.badCount}
+          </div>
+        </div>
+        <div>
+          <IconButton aria-label="favorite">
+            {
+              props.isFavorite 
+                ? <StarIcon
+                    onClick={(_: any) => props.onClick('favorite', props.index)}
+                  />
+                : <StarBorderIcon
+                    onClick={(_: any) => props.onClick('favorite', props.index)}
+                  />
+            }
+          </IconButton>
+        </div>
+        <div>
+          <IconButton aria-label="share">
+            <ShareIcon />
+          </IconButton>
+        </div>
       </CardActions>
     </Card>
   )
