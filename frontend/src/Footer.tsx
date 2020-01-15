@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import 'typeface-roboto';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -17,7 +18,8 @@ const useStyles = makeStyles({
 
 function Footer() {
   const classes = useStyles();
-  const [value, setValue] = React.useState('ranking');
+  const pathname = window.location.pathname;
+  const [value, setValue] = React.useState(pathname);
   return (
     <AppBar position="fixed" color="primary" className={classes.appbar}>
       <BottomNavigation
@@ -27,9 +29,26 @@ function Footer() {
         }}
         showLabels
       >
-        <BottomNavigationAction label="Ranking" value="ranking" icon={<WhatshotIcon />} />
-        <BottomNavigationAction label="Playlist" value="playlist" icon={<PlaylistPlayIcon />} />
-        <BottomNavigationAction label="Channel" value="channel" icon={<AccountCircleIcon />} />
+        <BottomNavigationAction
+          component={Link}
+          to="/"
+          label="Ranking"
+          value="ranking"
+          icon={<WhatshotIcon />}
+        />
+        <BottomNavigationAction
+          component={Link} to="/playlist"
+          label="Playlist"
+          value="playlist"
+          icon={<PlaylistPlayIcon />}
+        />
+        <BottomNavigationAction
+          component={Link}
+          to="/channel"
+          label="Channel"
+          value="channel"
+          icon={<AccountCircleIcon/>}
+        />
       </BottomNavigation>
     </AppBar>
   )
