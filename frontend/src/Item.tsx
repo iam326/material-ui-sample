@@ -30,8 +30,12 @@ const useStyles = makeStyles({
     maxWidth: 640
   },
   media: {
+    /*
     height: 0,
     paddingTop: '56%'
+    */
+    height: '150px',
+    objectFit: 'cover'
   },
   actions: {
     display: 'flex',
