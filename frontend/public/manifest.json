@@ -1,6 +1,6 @@
 {
-  "short_name": "Countdown",
-  "name": "Countdown Timer",
+  "short_name": "Card List",
+  "name": "Card List Sample",
   "icons": [
     {
       "src": "favicon.ico",
