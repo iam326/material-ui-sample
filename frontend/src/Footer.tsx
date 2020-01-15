@@ -33,7 +33,7 @@ function Footer() {
           component={Link}
           to="/"
           label="Ranking"
-          value="ranking"
+          value="/"
           icon={<WhatshotIcon />}
         />
         <BottomNavigationAction
