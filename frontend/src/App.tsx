@@ -28,28 +28,16 @@ function App() {
 
 function Playlist() {
   return (
-    <div>
+    <div style={{marginTop: '70px'}}>
       <h1>playlist</h1>
-      <ul>
-        <li>playlist</li>
-        <li>playlist</li>
-        <li>playlist</li>
-        <li>playlist</li>
-      </ul>
     </div>
   )
 }
 
 function Channel() {
   return (
-    <div>
+    <div style={{marginTop: '70px'}}>
       <h1>channel</h1>
-      <ul>
-        <li>channel</li>
-        <li>channel</li>
-        <li>channel</li>
-        <li>channel</li>
-      </ul>
     </div>
   )
 }
