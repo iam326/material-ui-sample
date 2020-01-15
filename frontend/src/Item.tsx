@@ -46,7 +46,8 @@ const useStyles = makeStyles({
   },
   count: {
     display: 'inline-block',
-    marginLeft: '6px'
+    marginLeft: '6px',
+    userSelect: 'none'
   }
 });
 
